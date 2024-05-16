@@ -1,0 +1,26 @@
+{
+  "manifest_version": 2,
+  "name": "Cobalt Toolbar",
+  "version": "1.0",
+  "description": "Get Cobalt.tools open right in the toolbar with the URL automatically filled in.",
+  "permissions": [
+    "activeTab"
+  ],
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "icons": {
+    "48": "icon.png"
+  }
+}
+
+

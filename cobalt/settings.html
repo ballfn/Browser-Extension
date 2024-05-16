@@ -1,0 +1,37 @@
+document.addEventListener('DOMContentLoaded', () => {
+  let saveButton = document.getElementById('save-settings');
+  let instanceInput = document.getElementById('instance-url');
+
+  // Load saved settings
+  chrome.storage.sync.get('instanceUrl', (data) => {
+    if (data.instanceUrl) {
+      instanceInput.value = data.instanceUrl;
+    }
+  });
+
+  // Save settings when Save button is clicked
+  saveButton.addEventListener('click', () => {
+    let instanceUrl = instanceInput.value.trim();
+
+    // Validate URL
+    if (!isValidUrl(instanceUrl)) {
+      alert('Please enter a valid URL.');
+      return;
+    }
+
+    // Save instance URL
+    chrome.storage.sync.set({ 'instanceUrl': instanceUrl }, () => {
+      alert('Settings saved successfully.');
+    });
+  });
+
+  // Function to validate URL
+  function isValidUrl(url) {
+    try {
+      new URL(url);
+      return true;
+    } catch (error) {
+      return false;
+    }
+  }
+});
